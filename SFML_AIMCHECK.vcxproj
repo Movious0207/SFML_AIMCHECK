@@ -79,7 +79,7 @@
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)scripts\resCopy.bat" "$(SolutionDir)res" "$(OutDir)res" "$(SolutionDir)\SFML-3.0.2\bin" "$(OutDir)"</Command>
+      <Command>"$(SolutionDir)scripts\resCopy.bat" "$(SolutionDir)res" "$(OutDir)res" "$(SolutionDir)\SFML-3.0.2\dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,7 +104,7 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>"$(SolutionDir)scripts\resCopy.bat" "$(SolutionDir)res" "$(OutDir)res" "$(SolutionDir)\SFML-3.0.2\bin" "$(OutDir)"</Command>
+      <Command>"$(SolutionDir)scripts\resCopy.bat" "$(SolutionDir)res" "$(OutDir)res" "$(SolutionDir)\SFML-3.0.2\dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
