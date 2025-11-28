@@ -1,8 +1,12 @@
+
 #include "GamePlay.h"
+
+#include <ctime>
 
 static bool isGameStarted = false;
 
 static void Reset();
+static void moveTargets();
 static bool isPointInCircle(sf::Vector2i& p, const sf::CircleShape& c);
 
 static Target target[5];
@@ -13,7 +17,10 @@ static int score = 0;
 
 void GamePlay::Init()
 {
+    srand(time(nullptr));
+
     lives = 3;
+    isGameStarted = false;
 
     for (int i = 0; i < 5; i++)
     {
@@ -38,18 +45,32 @@ void GamePlay::Input(sf::RenderWindow* window, Screen& actualScreen)
         }
         else if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>())
         {
-            for (int i = 0; i < 5; i++)
+            if (isGameStarted)
             {
-                if (mouseButtonPressed->button == sf::Mouse::Button::Left && isPointInCircle(MousePos, target[i].Circle))
+                for (int i = 0; i < 5; i++)
                 {
-                    if (target[i].isEvil)
+                    if (mouseButtonPressed->button == sf::Mouse::Button::Left && isPointInCircle(MousePos, target[i].Circle))
                     {
-                        actualScreen = Screen::GamePlay;
+                        if (target[i].isEvil)
+                        {
+                            actualScreen = Screen::GamePlay;
+                        }
+                        else
+                        {
+                            for (int j = 0; j < 5; j++)
+                            {
+                                target[j].isActive = false;
+                                score++;
+                            }
+                        }
                     }
-                    else
-                    {
-                        target[i].isActive = false;
-                    }
+                }
+            }
+            else
+            {
+                if (mouseButtonPressed->button == sf::Mouse::Button::Left)
+                {
+                    isGameStarted = true;
                 }
             }
         }
@@ -59,7 +80,20 @@ void GamePlay::Input(sf::RenderWindow* window, Screen& actualScreen)
 
 void GamePlay::Update(sf::RenderWindow* window)
 {
+    bool moveTarget = true;
 
+    for (int i = 0; i <= score && i < 5; i++)
+    {
+        if (target[i].isActive)
+        {
+            moveTarget = false;
+        }
+    }
+
+    if (moveTarget)
+    {
+        moveTargets();
+    }
 }
 
 void GamePlay::Draw(sf::RenderWindow* window)
@@ -101,11 +135,33 @@ static void Reset()
     }
 }
 
-static bool isPointInCircle( sf::Vector2i& p, const sf::CircleShape& c) 
+static void moveTargets()
 {
-    float dx = p.x - c.getPosition().x;
-    float dy = p.y - c.getPosition().y;
-    float distanceSquared = (dx * dx) + (dy * dy);
+    int radius = target[0].Circle.getRadius();
 
-    return distanceSquared <= (c.getRadius() * c.getRadius());
+    float randX = (rand() % (1280 - radius * 4)) + radius;
+    float randY = (rand() % (720 - radius * 4)) + radius;
+
+    target[0].isActive = true;
+    target[0].isEvil = false;
+    target[0].Circle.setPosition({ randX ,randY });
+
+    for (int i = 1; i <= score && i < 5; i++)
+    {
+        randX = (rand() % (1280 - radius * 2)) + radius;
+        randY = (rand() % (720 - radius * 2)) + radius;
+
+        target[i].isActive = true;
+        target[i].isEvil = true;
+
+        target[i].Circle.setPosition({ randX ,randY });
+    }
+}
+
+static bool isPointInCircle( sf::Vector2i& p, const sf::CircleShape& c)
+{
+    return (p.x < c.getPosition().x + c.getRadius() * 2
+        && p.x > c.getPosition().x
+        && p.y < c.getPosition().y + c.getRadius() * 2
+        && p.y > c.getPosition().y);
 }
