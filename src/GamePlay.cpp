@@ -178,6 +178,8 @@ static void Reset()
 {
     lives = 3;
     score = 0;
+    maxTimer = 5.0f;
+    timer = maxTimer;
 
     for (int i = 0; i < 5; i++)
     {
