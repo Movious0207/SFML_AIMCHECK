@@ -16,6 +16,8 @@ namespace Game
 
     static sf::RenderWindow window(sf::VideoMode({ 1280, 720 }), "AIMCHECK");
     static sf::Text text(font, "  AIMCHECK", 100);
+    static sf::Text playText(font, "Play", 30);
+    static sf::Text quitText(font, "Quit", 30);
 
     void Game::Run()
     {
@@ -128,12 +130,20 @@ namespace Game
         window.clear();
 
         text.setPosition({ 1280.0f / 4.0f, 720.0f / 11 });
+        playText.setPosition({ PlayButton.Rectangle.getPosition().x + 10.0f, PlayButton.Rectangle.getPosition().y + 10.0f });
+        quitText.setPosition({ QuitButton.Rectangle.getPosition().x + 10.0f, QuitButton.Rectangle.getPosition().y + 10.0f });
+
+        playText.setFillColor({ 0, 0, 0 });
+        quitText.setFillColor({ 0, 0, 0 });
+
         window.draw(text);
 
         window.draw(PlayButton.Rectangle);
         window.draw(QuitButton.Rectangle);
 
-        // Update the window
+        window.draw(playText);
+        window.draw(quitText);
+
         window.display();
     }
 

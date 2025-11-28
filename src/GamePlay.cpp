@@ -239,8 +239,8 @@ static void drawUi(sf::RenderWindow* window)
     ui2.setPosition({ (1280.0f / 5.0f) - 80.0f ,720.0f / 10.0f });
     ui3.setPosition({ (1280.0f / 3.0f) , 720.0f / 10.0f });
     ui4.setPosition({ (1280.0f / 3.0f) - 80.0f ,720.0f / 10.0f });
-    ui5.setPosition({ (1280.0f / 2.0f) + 20.0f , 720.0f / 10.0f });
-    ui6.setPosition({ (1280.0f / 2.0f) - 80.0f ,720.0f / 10.0f });
+    ui5.setPosition({ (1280.0f / 1.5f) + 20.0f , 720.0f / 10.0f });
+    ui6.setPosition({ (1280.0f / 1.5f) - 80.0f ,720.0f / 10.0f });
 
     window->draw(ui1);
     window->draw(ui2);
