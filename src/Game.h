@@ -7,6 +7,7 @@
 
 namespace Game
 {
-
 	void Run();
 }
+
+static sf::Font font("res/comfort.ttf");

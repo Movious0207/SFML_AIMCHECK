@@ -15,8 +15,7 @@ namespace Game
     static void CreateButtons();
 
     static sf::RenderWindow window(sf::VideoMode({ 1280, 720 }), "AIMCHECK");
-    static sf::Font font("res/comfort.ttf");
-    static sf::Text text(font, "             AIMCHECK", 100);
+    static sf::Text text(font, "  AIMCHECK", 100);
     static sf::Event* event;
 
     void Game::Run()
@@ -128,10 +127,10 @@ namespace Game
 
     static void Draw()
     {
-        // Clear screen
+        
         window.clear();
 
-        // Draw the string
+        text.setPosition({ 1280.0f / 4.0f, 720.0f / 11 });
         window.draw(text);
 
         window.draw(PlayButton.Rectangle);
