@@ -26,7 +26,7 @@ static float timer = 5.0f;
 
 void GamePlay::Init()
 {
-    srand(time(nullptr));
+    srand(static_cast<unsigned int>(time(nullptr)));
 
     lives = 3;
     score = 0;
@@ -105,7 +105,7 @@ void GamePlay::Input(sf::RenderWindow* window, Screen& actualScreen)
     
 }
 
-void GamePlay::Update(sf::RenderWindow* window)
+void GamePlay::Update()
 {
     bool moveTarget = true;
     float dt = deltaClock.restart().asSeconds();
@@ -189,10 +189,10 @@ static void Reset()
 
 static void moveTargets()
 {
-    int radius = target[0].Circle.getRadius();
+    int radius = static_cast<int> (target[0].Circle.getRadius());
 
-    float randX = (rand() % (1280 - radius * 4)) + radius;
-    float randY = (rand() % (720 - radius * 4)) + radius;
+    float randX = static_cast<float>((rand() % (1280 - radius * 4)) + radius);
+    float randY = static_cast<float>((rand() % (720 - radius * 4)) + radius);
 
     target[0].isActive = true;
     target[0].isEvil = false;
@@ -202,8 +202,8 @@ static void moveTargets()
     {
         for (int i = 1; i <= score; i++)
         {
-            randX = (rand() % (1280 - radius * 2)) + radius;
-            randY = (rand() % (720 - radius * 2)) + radius;
+            randX = static_cast<float>((rand() % (1280 - radius * 2)) + radius);
+            randY = static_cast<float>((rand() % (720 - radius * 2)) + radius);
 
             target[i].isActive = true;
             target[i].isEvil = true;
@@ -215,8 +215,8 @@ static void moveTargets()
     {
         for (int i = 1; i < 5; i++)
         {
-            randX = (rand() % (1280 - radius * 2)) + radius;
-            randY = (rand() % (720 - radius * 2)) + radius;
+            randX = static_cast<float>((rand() % (1280 - radius * 2)) + radius);
+            randY = static_cast<float>((rand() % (720 - radius * 2)) + radius);
 
             target[i].isActive = true;
             target[i].isEvil = true;

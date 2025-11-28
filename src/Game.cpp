@@ -10,18 +10,15 @@ namespace Game
     static float SCREEN_HEIGHT = 720.0f;
 
     static void Input(Screen& actualScreen);
-    static void Update(Screen& actualScreen);
+    static void Update();
     static void Draw();
     static void CreateButtons();
 
     static sf::RenderWindow window(sf::VideoMode({ 1280, 720 }), "AIMCHECK");
     static sf::Text text(font, "  AIMCHECK", 100);
-    static sf::Event* event;
 
     void Game::Run()
     {
-        font.openFromFile("res/comfort.ttf");
-
         CreateButtons();
 
         GamePlay::Init();
@@ -35,12 +32,12 @@ namespace Game
             {
             case Screen::Menu:
                 Input(actualScreen);
-                Update(actualScreen);
+                Update();
                 Draw();
                 break;
             case Screen::GamePlay:
                 GamePlay::Input(&window, actualScreen);
-                GamePlay::Update(&window);
+                GamePlay::Update();
                 GamePlay::Draw(&window);
                 break;
             default:
@@ -103,7 +100,7 @@ namespace Game
         }
     }
 
-    static void Update(Screen& actualScreen)
+    static void Update()
     {
 
         if (PlayButton.isHovering)

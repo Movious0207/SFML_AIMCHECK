@@ -7,7 +7,7 @@ namespace GamePlay
 {
 	void Init();
 	void Input(sf::RenderWindow* window, Screen& actualScreen);
-	void Update(sf::RenderWindow* window);
+	void Update();
 	void Draw(sf::RenderWindow* window);
 }
 
