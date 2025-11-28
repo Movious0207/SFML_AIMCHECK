@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Program">
+      <UniqueIdentifier>{b0630ff5-5672-427d-b804-dc5afed925de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program\Game">
+      <UniqueIdentifier>{05ef3db7-730d-4377-a3db-3f72a1c22d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program\GamePlay">
+      <UniqueIdentifier>{249f7126-c474-4873-ba33-0ff16df99822}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Program\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GamePlay.cpp">
+      <Filter>Program\GamePlay</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.h">
+      <Filter>Program\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button.h">
+      <Filter>Program\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GamePlay.h">
+      <Filter>Program\GamePlay</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
